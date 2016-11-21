@@ -17,10 +17,12 @@ $(document).ready(function () {
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      window.location.href = "admin.html";
+      window.location.href = "books.html";
 
     });
 
   });
 
 });
+
+
