@@ -63,13 +63,8 @@ var SDK = {
                     headers: {filter: {include: ["id", "courseId", "description", "start", "end"]}}
                 }, cb);
             },
-            create: function (data, cb) {
-                SDK.request({
-                    method: "POST",
-                    url: "/lecture",
-                    data: data,
-                    headers: {authorization: SDK.Storage.load("tokenId")}
-                }, cb);
+            getbyId: function (id, cb) {
+                SDK.request({method: "GET", url: "/lectures/" + id}, cb);
             }
         },
 
@@ -113,7 +108,7 @@ var SDK = {
 
         logOut: function () {
             SDK.Storage.remove("tokenId");
-            SDK.Storage.remove("userId");
+            SDK.Storage.remove("type");
             SDK.Storage.remove("user");
         }
         ,
@@ -132,8 +127,8 @@ var SDK = {
                 if (err) return cb(err);
 
                 SDK.Storage.persist("tokenId", data.id);
-                SDK.Storage.persist("courses", data.userId);
-                SDK.Storage.persist("user", data.user); //hvilke data?
+                SDK.Storage.persist("type", data.type);
+                SDK.Storage.persist("courses", data.user); //hvilke data?
 
                 cb(null, data);
 

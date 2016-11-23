@@ -6,8 +6,6 @@
  * @constructor
  */
 
-$(document).ready(function () {
-
 function StarRating() {
     this.init();
 };
@@ -57,4 +55,3 @@ StarRating.prototype.fillStarsUpToElement = function(el) {
 // Run:
 new StarRating();
 
-});
