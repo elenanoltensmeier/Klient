@@ -17,8 +17,13 @@ $(document).ready(function () {
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      window.location.href = "books.html";
+      window.location.href = "lectures.html";
 
+    });
+
+    $("#logOutLink").on("click", function(){
+      SDK.logOut();
+      window.location.href = "index.html";
     });
 
   });

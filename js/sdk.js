@@ -63,8 +63,8 @@ var SDK = {
                     headers: {filter: {include: ["id", "courseId", "description", "start", "end"]}}
                 }, cb);
             },
-            getbyId: function (id, cb) {
-                SDK.request({method: "GET", url: "/lectures/" + id}, cb);
+            getbyId: function (cb) {
+                SDK.request({method: "GET", url: "/lectures/" + SDK.Storage.load("tokenId")}, cb);
             }
         },
 
@@ -76,8 +76,9 @@ var SDK = {
                     headers: {filter: {include: ["id", "code", "name", "studyId"]}}
                 }, cb);
             },
-            getbyId: function (id, cb) {
-                SDK.request({method: "GET", url: "/courses/" + id}, cb);
+            getbyId: function (cb) {
+                SDK.request({method: "GET", url: "/courses/" + SDK.Storage.load("tokenId")},
+                    cb);
             }
         },
 

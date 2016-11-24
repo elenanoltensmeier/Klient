@@ -1,20 +1,22 @@
 $(document).ready(function () {
 
     //Fires on page-load
-    SDK.Course.getbyId(function(err, course){
+    SDK.Course.getbyId( function(err, courses){
         if(err) throw err;
 
-        var decrypted = encryptDecrypt(data);
+        var decrypted = encryptDecrypt(courses);
         decrypted = JSON.parse(decrypted);
 
 
+
         var $courseDropdown = $("#courseDropdown");
-        decrypted.forEach(function (id, i) {
+        decrypted.forEach(function (course, i) {
 
             $courseDropdown.append(
-            "<select id='course-select'>
-            "<option value= "course.id">"+ course.displaytext"</option>"
-                "</select>");
+            "<button>" + "<ul>" + "<li>" + course.code + "</li>" + "</ul>"+
+            "</button>");
+        });
+
 
             $courseDropdown.on('change',function(){
                 SDK.Lectures.getById(function(err, id){
@@ -29,8 +31,8 @@ $(document).ready(function () {
 
                         $lecturesTableBody.append(
                             "<tr>" +
-                            "<td>" + lecture.title + "</td>" +
-                            "<td>" + lecture.author + "</td>" +
+                            "<td>" + lecture.description + "</td>" +
+                            "<td>" + lecture.start + "</td>" +
                             "<td>" + lecture.version + "</td>" +
                             "<td>" + lecture.priceAB + "</td>" +
                             "<td>" + user.name + "</td>" +
@@ -39,12 +41,8 @@ $(document).ready(function () {
                     });
 
                 });
+            });
 
-            });
-            });
+
         });
-
-    });
-
 });
-

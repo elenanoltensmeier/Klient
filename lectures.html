@@ -26,8 +26,8 @@
                                 data-target="#bs-example-navbar-collapse-2">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+
+
                         </button>
                         <a class="navbar-brand" href="index.html">Projekt Eva</a>
                     </div>
@@ -35,11 +35,10 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="books.html">Overblik <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Overblik</a></li>
-                            <li><a href="#">Overblik</a></li>
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="login.html">Log ud</a></li>
+                            <li><a id="logOutLink">Logud</a></li>
                         </ul>
                     </div>
                 </div>
@@ -49,15 +48,12 @@
             <div class="page-header">
                 <h1>Se alle undervisningsgange</h1>
                 <div class="courseDropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="courseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Vælg Fag
                         <span class="caret"></span>
+
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">dynamisk</a></li>
-                        <li><a href="#">dynamisk</a></li>
-                        <li><a href="#">dynamisk</a></li>
-                    </ul>
+
                 </div>
             </div>
             <table class="table">
@@ -68,9 +64,6 @@
                 <th>Dato</th>
                 <th>Se(skal indeholde knap)</th>
                 </thead>
-                <tbody id="lecturesTableBody">
-
-                </tbody>
             </table>
 
 
@@ -89,6 +82,7 @@
 <script src="js/sdk.js"></script>
 <script src="js/books.page.js"></script>
 <script src="js/courses.js"></script>
+<script src="js/login.page.js"></script>
 
 
 
