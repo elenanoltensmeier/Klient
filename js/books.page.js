@@ -5,7 +5,7 @@ $(document).ready(function () {
     if(err) throw err;
 
 
-    var $booksTableBody = $("#¢");
+    var $booksTableBody = $("booksTableBody");
     data.forEach(function (lecture) {
 
       $booksTableBody.append(

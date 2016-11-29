@@ -1,6 +1,12 @@
 
 $(document).ready(function () {
 
+  $("#logOutLink").on("click", function(){
+    SDK.logOut();
+    window.location.href = "login.html";
+  });
+
+
   $("#loginButton").on("click", function(e){
     e.preventDefault();
 
@@ -20,12 +26,6 @@ $(document).ready(function () {
       window.location.href = "lectures.html";
 
     });
-
-    $("#logOutLink").on("click", function(){
-      SDK.logOut();
-      window.location.href = "login.html";
-    });
-
   });
 
 });

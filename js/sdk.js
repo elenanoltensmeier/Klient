@@ -60,10 +60,10 @@ var SDK = {
         },
 
         Lectures: {
-            getById: function (cb) {
+            getById: function (id, cb) {
                 SDK.request({
                     method: "GET",
-                    url: "/lecture/" +
+                    url: "/lecture/" + id
                     //headers: {filter: {include: ["data-course"]}}
                 }, cb);
             }

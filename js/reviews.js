@@ -16,7 +16,6 @@ $(document).ready(function () {
 
             $reviewsTableBody.append(
                 "<tr>" +
-                "<td>" + review. + "</td>" +
                 "<td>" + review.lectureId + "</td>" +
                 "<td>" + review.version + "</td>" +
                 "<td>" + review.priceAB + "</td>" +
@@ -27,8 +26,6 @@ $(document).ready(function () {
         });
 
     });
-    userId", "lectureId", "rating", "comment","isDele
-
 
 });
 
