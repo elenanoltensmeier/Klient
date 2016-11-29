@@ -38,7 +38,7 @@
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a id="logOutLink">Logud</a></li>
+                            <li><a class="logOutLink">Log ud</a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,24 +47,29 @@
 
             <div class="page-header">
                 <h1>Se alle undervisningsgange</h1>
-                <div class="courseDropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="courseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <div>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="Dropdrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Vælg Fag
                         <span class="caret"></span>
 
                     </button>
-
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li id="courseDropdown" value= "course.id"><a> </a></li>
+                    </ul>
                 </div>
             </div>
             <table class="table">
                 <thead>
                 <th>Fag</th>
                 <th>Type</th>
-                <th>Professor</th>
                 <th>Dato</th>
                 <th>Se(skal indeholde knap)</th>
                 </thead>
             </table>
+            <tbody id="lecturesTableBody">
+
+
+            </tbody>
 
 
         </div>
@@ -80,7 +85,6 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/books.page.js"></script>
 <script src="js/courses.js"></script>
 <script src="js/login.page.js"></script>
 

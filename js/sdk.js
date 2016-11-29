@@ -1,6 +1,6 @@
 var SDK = {
 
-        serverURL: "http://localhost:5020/api",
+        serverURL: "http://localhost:5030/api",
 
         request: function (options, cb) {
 
@@ -22,7 +22,11 @@ var SDK = {
 
         Book: {
             getAll: function (cb) {
-                SDK.request({method: "GET", url: "/book", headers: {filter: {include: ["authors", "publisher"]}}}, cb);
+                SDK.request({method: "GET",
+                    url: "/book",
+                    headers: {filter: {include: ["authors", "publisher"]}}},
+                    cb);
+
             },
             create: function (data, cb) {
                 SDK.request({
@@ -56,29 +60,46 @@ var SDK = {
         },
 
         Lectures: {
-            getAll: function (cb) {
+            getById: function (cb) {
                 SDK.request({
                     method: "GET",
-                    url: "/lecture",
-                    headers: {filter: {include: ["id", "courseId", "description", "start", "end"]}}
+                    url: "/lecture/" +
+                    //headers: {filter: {include: ["data-course"]}}
                 }, cb);
-            },
-            getbyId: function (cb) {
-                SDK.request({method: "GET", url: "/lectures/" + SDK.Storage.load("tokenId")}, cb);
             }
         },
 
         Course: {
-            getAll: function (cb) {
-                SDK.request({
+            getById: function (cb) {
+                /*this.request({
+                    data:{
+                        method: "GET",
+                        url: "/course/" + SDK.Storage.load("tokenId"),
+                   }},
+
+                    function (err, data) {
+                        //On login-error
+                        if (err) return cb(err);
+
+                        SDK.Storage.persist("courses", data.name);
+
+
+                        cb(null, data);
+                        console.log(data)
+
+                    });*/
+
+                $.ajax({
+                    url: SDK.serverURL + "/course/" + SDK.Storage.load("tokenId"),
                     method: "GET",
-                    url: "/course",
-                    headers: {filter: {include: ["id", "code", "name", "studyId"]}}
-                }, cb);
-            },
-            getbyId: function (cb) {
-                SDK.request({method: "GET", url: "/courses/" + SDK.Storage.load("tokenId")},
-                    cb);
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        //SDK.Storage.persist("courses", data);
+                        cb(null,data)
+                    }
+                });
+
             }
         },
 
@@ -110,7 +131,8 @@ var SDK = {
         logOut: function () {
             SDK.Storage.remove("tokenId");
             SDK.Storage.remove("type");
-            SDK.Storage.remove("user");
+            SDK.Storage.remove("courseIds");
+
         }
         ,
 
@@ -129,7 +151,7 @@ var SDK = {
 
                 SDK.Storage.persist("tokenId", data.id);
                 SDK.Storage.persist("type", data.type);
-                SDK.Storage.persist("courses", data.user); //hvilke data?
+
 
                 cb(null, data);
 
