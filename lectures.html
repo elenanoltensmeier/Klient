@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="lib/css/testCSS.css">
 
 
     <meta charset="UTF-8">
@@ -12,6 +13,80 @@
 
 </head>
 <body>
+
+
+<!-- Modal Taget fra Bootstrap-->
+<div class="modal fade" id="reviewsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Reviews</h4>
+            </div>
+            <div class="modal-body">
+               <table class="table">
+                   <thead>
+                   <th>Lecture id</th>
+                   <th>Rating</th>
+                   <th>Kommentar</th>
+
+                   </thead>
+                   <tbody id="reviewTableBody">
+                   <div id="newReview">
+
+                   </div>
+
+                   </tbody>
+               </table>
+
+
+            <div class="modal-footer">
+
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input class="form-control" id="comment" type="text" placeholder="Skriv en kommentar...">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" id="rating" type= "int" placeholder="Skriv en rating">
+                        </div>
+                    </div>
+
+                    <!--<div class="col-md-6">
+                        <div class="form-group">
+                            <div id="rating">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+
+            <div id="btmButtons">
+            <button id="createReviewButton" type="button" class="btn btn-primary">Tilføj kommentar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="deleteReviewButton "type="button" class="btn btn-default" data-dismiss="modal">slet eget review</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 <div class="container">
 
@@ -65,13 +140,13 @@
                 <th>Type</th>
                 <th>Dato</th>
                 <th>*Knap*</th>
-                <th>*Knap*</th>
-                <th>*Knap*</th>
                 </thead>
                 <tbody id="lecturesTableBody">
 
                 </tbody>
             </table>
+
+
 
 
         </div>
@@ -89,6 +164,7 @@
 <script src="js/sdk.js"></script>
 <script src="js/courses.js"></script>
 <script src="js/login.page.js"></script>
+<script src="js/testJs.js"></script>
 
 
 </body>

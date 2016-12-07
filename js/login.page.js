@@ -17,9 +17,11 @@ $(document).ready(function () {
 
       //On wrong credentials
       if(err) {
+        debugger;
         return $("#loginForm").find(".form-group").addClass("has-error");
       }
 
+      debugger;
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 

@@ -1,6 +1,6 @@
 var SDK = {
 
-        serverURL: "http://localhost:5030/api",
+        serverURL: "http://localhost:5044/api",
 
         request: function (options, cb) {
 
@@ -20,82 +20,51 @@ var SDK = {
             });
         },
 
-        Book: {
-            getAll: function (cb) {
-                SDK.request({method: "GET",
-                    url: "/book",
-                    headers: {filter: {include: ["authors", "publisher"]}}},
-                    cb);
-
-            },
-            create: function (data, cb) {
-                SDK.request({
-                    method: "POST",
-                    url: "/book",
-                    data: data,
-                    headers: {authorization: SDK.Storage.load("tokenId")}
-                }, cb);
-            }
-        },
-
         Review: {
-            getAll: function (cb) {
+            getAll: function (id, cb) {
                 SDK.request({
                     method: "GET",
-                    url: "/review",
-                    headers: {filter: {include: ["userId", "lectureId", "rating", "comment", "isDeleted"]}}
+                    url: "/student/review/" + id
                 }, cb);
             },
             create: function (data, cb) {
                 SDK.request({
                     method: "POST",
-                    url: "/review",
-                    data: data,
-                    headers: {authorization: SDK.Storage.load("tokenId")}
+                    url: "/student/review/",
+                    data: data
+                }, cb);
+            },
+            delete: function (data, cb) {
+                SDK.request({
+                    method: "DELETE",
+                    url: "/student/review/",
+                    data: data
                 }, cb);
             }
         },
-        current: function () {
-            return SDK.Storage.load("user");
-        },
 
+        /* current: function () {
+             return SDK.Storage.load("user");
+         },
+ */
         Lectures: {
             getById: function (id, cb) {
                 SDK.request({
                     method: "GET",
                     url: "/lecture/" + id
-                    //headers: {filter: {include: ["data-course"]}}
                 }, cb);
             }
         },
 
         Course: {
             getById: function (cb) {
-                /*this.request({
-                    data:{
-                        method: "GET",
-                        url: "/course/" + SDK.Storage.load("tokenId"),
-                   }},
-
-                    function (err, data) {
-                        //On login-error
-                        if (err) return cb(err);
-
-                        SDK.Storage.persist("courses", data.name);
-
-
-                        cb(null, data);
-                        console.log(data)
-
-                    });*/
-
                 $.ajax({
-                    url: SDK.serverURL + "/course/" + SDK.Storage.load("tokenId"),
+                    url: SDK.serverURL + "/course/" + SDK.Storage.load("userId"),
                     method: "GET",
                     contentType: "application/json",
                     dataType: "json",
                     success: function (data) {
-                        //SDK.Storage.persist("courses", data);
+                      //  SDK.Storage.persist("courses", data.setDisplaytext);
                         cb(null,data)
                     }
                 });
@@ -103,35 +72,11 @@ var SDK = {
             }
         },
 
-        User: {
-            getAll: function (cb) {
-                SDK.request({method: "GET", url: "/staffs"}, cb);
-            }
-            ,
-            current: function () {
-                return SDK.Storage.load("user");
-            }
-        }
-        ,
 
-        Publisher: {
-            getAll: function (cb) {
-                SDK.request({method: "GET", url: "/publishers"}, cb);
-            }
-        }
-        ,
-
-        Author: {
-            getAll: function (cb) {
-                SDK.request({method: "GET", url: "/authors"}, cb);
-            }
-        }
-        ,
 
         logOut: function () {
-            SDK.Storage.remove("tokenId");
+            SDK.Storage.remove("userId");
             SDK.Storage.remove("type");
-            SDK.Storage.remove("courseIds");
 
         }
         ,
@@ -149,7 +94,7 @@ var SDK = {
                 //On login-error
                 if (err) return cb(err);
 
-                SDK.Storage.persist("tokenId", data.id);
+                SDK.Storage.persist("userId", data.id);
                 SDK.Storage.persist("type", data.type);
 
 

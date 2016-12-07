@@ -28,3 +28,18 @@
     transform: rotateX(0deg);
     text-shadow: 0 0 30px #ffc;
 }
+
+
+
+
+#btmButtons{
+    display: inline-block;
+    float: right;
+}
+
+.dropdown-menu  {
+
+    position: fixed;
+    top:30%;
+    z-index: 2;
+}
