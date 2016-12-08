@@ -37,16 +37,16 @@ var SDK = {
             delete: function (data, cb) {
                 SDK.request({
                     method: "DELETE",
-                    url: "/student/review/",
+                    url: "/student/deletereview/",
                     data: data
                 }, cb);
             }
         },
 
-        /* current: function () {
-             return SDK.Storage.load("user");
+         current: function () {
+             return SDK.Storage.load("reviewId");
          },
- */
+
         Lectures: {
             getById: function (id, cb) {
                 SDK.request({

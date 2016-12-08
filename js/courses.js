@@ -1,5 +1,12 @@
-$(document).ready(function () {
+function mylittlefunction() {
+    $('#badelement').remove();
+    console.log("HELLOEW");
+}
 
+
+
+$(document).ready(function () {
+    $('selector').on('click', mylittlefunction());
     //Fires on page-load
     SDK.Course.getById(function (err, courses) {
         if (err) throw err;
@@ -45,7 +52,7 @@ $(document).ready(function () {
                     $("#reviewsModal_" + lecture.id).on("click", function(){
                         var lecture = $(this).data("lecture");
                         $("#reviewTableBody tr").remove();
-                       // SDK.Storage.persist("lectureId", lecture.id);
+                        //SDK.Storage.persist("lectureId", lecture.id);
                         //console.log("hall");
                         //window.location.href = "review.html";
                         $("#reviewsModal").modal();
@@ -69,8 +76,32 @@ $(document).ready(function () {
                                     "<td>" + review.lectureId + "</td>" +
                                     "<td>" + review.rating + "</td>" +
                                     "<td>" + review.comment + "</td>" +
+                                    "<td>" + "<button id='deleteReviewButton" +review.id + "' data-reviewId="+ review.id + ">  Slet review </button>" + "</td>" +
 
                                     "</tr>");
+
+                                $("#deleteReviewButton" + review.id).on("click", function(){
+                                    var reviewId = $(this).data("reviewid");
+                                   
+
+
+                                    //Create JSON object
+                                    var deleteReview = {
+                                        userId: SDK.Storage.load("userId"),
+                                        reviewId: reviewId
+                                    };
+                                    console.log(deleteReview);
+
+
+                                    //Create review
+                                    SDK.Review.delete(deleteReview, function(err, deleteReview){
+                                        var deleteReview = $(this).data("reviewId");
+                                        if(err) throw err;
+
+                                        // $("#createReviewButton").modal("hide");
+                                    });
+                                });
+
 
                             });
 
@@ -98,28 +129,10 @@ $(document).ready(function () {
                             });
                         });
 
-                        SDK.Review.delete(review, function(err, review) {
-                            if (err) throw err;
 
 
 
-                            $("#deleteReviewButton").on("click", function(){
 
-                                //Create JSON object
-                                var deleteReview = {
-                                    userId: SDK.Storage.load("userId"),
-                                    reviewId: review
-                                };
-
-                                console.log(deleteReview);
-
-                                //Create review
-                                SDK.Review.delete(review, function(err, deleteReview){
-                                    if(err) throw err;
-
-                                    // $("#createReviewButton").modal("hide");
-                                });
-                            });
                     });
 
                 });
@@ -130,12 +143,11 @@ $(document).ready(function () {
 
         $("#logOutLink").on("click", function(){
             SDK.logOut();
-            window.location.href = "index.html";
+            window.location.href = "login.html";
         });
 
 
     });
 
-});
 
 });
