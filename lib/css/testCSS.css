@@ -1,37 +1,3 @@
-.html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-#rating {
-    text-align: center;
-    perspective: 250px;
-    position: absolute;
-    top: 40%;
-    width: 100%;
-}
-
-#rating span {
-    cursor: pointer;
-    font-size: 30px;
-    padding: 0 10px;
-    opacity: .5;
-    transition: all 150ms;
-    display: inline-block;
-    transform-origin: center bottom;
-}
-
-#rating span.hover {
-    color: #FFD700;
-    opacity: 1;
-    transform: rotateX(0deg);
-    text-shadow: 0 0 30px #ffc;
-}
-
-
-
-
 #btmButtons{
     display: inline-block;
     float: right;
